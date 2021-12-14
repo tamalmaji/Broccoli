@@ -18,6 +18,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Theme style -->
   <link rel="stylesheet" href="../../public/css/adminlte.min.css">
+  <!-- css -->
+  <link rel="stylesheet" href="../../public/css/dashbord.css">
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -119,10 +121,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </a>
             </li>
             <li class="nav-item">
-              <a href="../food/food.php" class="nav-link">
+              <a href="../product/product.php" class="nav-link">
                 <i class="nav-icon far fa-circle"></i>
                 <p>
-                  Food
+                Product
                 </p>
               </a>
             </li>
@@ -135,7 +137,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </a>
             </li>
             <li class="nav-item">
-              <a href="../user type/userType.php" class="nav-link">
+              <a href="../userType/userType.php" class="nav-link">
                 <i class="nav-icon far fa-circle"></i>
                 <p>
                 User Type
