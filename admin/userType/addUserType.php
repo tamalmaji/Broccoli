@@ -12,6 +12,19 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     // for validate title
     if (empty($title)) {
         $title_err = 'Please Enter a catagory title';
+    }else{
+        $sql = 'SELECT userType_id  FROM broccoli_usertype WHERE userType_name = :title';
+        if ($statement = $pdo->prepare($sql)) {
+            $statement->bindValue(':title', $title);
+            if ($statement->execute()) {
+                if ($statement->rowCount() === 1) {
+                    $title_err = 'UserType alrady exits';
+                }
+            }else{
+                die('Somthing went Wrong');
+            }
+        }
+        unset($statement);
     }
     
     if (empty($title_err)) {

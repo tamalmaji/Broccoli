@@ -11,7 +11,7 @@ $users = $statement ->fetchAll(PDO::FETCH_ASSOC);
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <a href="adduser.php" class="btn btn-outline-primary btn-sm">Add user</a>
+            <a href="addUser.php" class="btn btn-outline-primary btn-sm">Add user</a>
             <br>
             <br>
         </div>
@@ -44,8 +44,8 @@ $users = $statement ->fetchAll(PDO::FETCH_ASSOC);
                             <td><?php echo $user['user_type'] ?></td>
                             <td><?php echo $user['create_at'] ?></td>
                             <td >
-                              <a href="./updateuser.php?id=<?php echo $user['user_id'] ?>" class="btn btn-info btn-xs">Edit</a>
-                              <form action="deleteuser.php" method="POST" style="display: inline-block;">
+                              <a href="./updateUser.php?id=<?php echo $user['user_id'] ?>" class="btn btn-info btn-xs">Edit</a>
+                              <form action="deleteUser.php" method="POST" style="display: inline-block;">
                                   <input type="hidden" name="id" value="<?php echo $user['user_id'] ?>">
                                   <button type="submit" class="btn btn-danger btn-xs">Delete</button>
                               </form>
