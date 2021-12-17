@@ -11,14 +11,9 @@ $products = $statement ->fetchAll(PDO::FETCH_ASSOC);
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <a href="addProduct.php" class="btn btn-outline-primary btn-sm">Add Product</a>
-            <br>
-            <br>
-        </div>
-        <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title"> Product </h3>
+                <h3 class="card-title">multiple Images </h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body table-responsive p-0">
@@ -28,8 +23,7 @@ $products = $statement ->fetchAll(PDO::FETCH_ASSOC);
                       <th>#</th>
                       <th>Image</th>
                       <th>Title</th>
-                      <th>Price</th>
-                      <th>Create Date</th>
+                      <th>Multiple Img</th>
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -40,10 +34,12 @@ $products = $statement ->fetchAll(PDO::FETCH_ASSOC);
                             <td>
                               <img src="../../public/<?php echo $product['product_img'];?>" alt="" style="width: 50px;">
                             </td>
-                            <td><?php echo $product['product_name'] ?></td>
-                            <td><?php echo $product['product_price'] ?></td>
-                            <td><?php echo $product['create_at'] ?></td>
+                            <td><?php echo substr($product['product_name'], 0, 15)."..."; ?></td>
+                            <td>
+                              <img src="../../public/<?php echo $product['product_img'];?>" alt="" style="width: 50px;">
+                            </td>
                             <td >
+                              <a href="./addproductImages.php?id=<?php echo $product['product_id'] ?>" class="btn btn-info btn-xs">Add</a>
                               <a href="./updateProduct.php?id=<?php echo $product['product_id'] ?>" class="btn btn-info btn-xs">Edit</a>
                               <form action="deleteProduct.php" method="POST" style="display: inline-block;">
                                   <input type="hidden" name="id" value="<?php echo $product['product_id'] ?>">
