@@ -13,6 +13,11 @@ $statement->bindValue(':id', $id);
 $statement->execute();
 $product = $statement->fetch(PDO::FETCH_ASSOC);
 
+$sql = 'SELECT * FROM broccoli_catagory ORDER BY catagory_id  DESC';
+$statements  = $pdo->prepare($sql);
+$statements->execute();
+$catagorys = $statements ->fetchAll(PDO::FETCH_ASSOC);
+
 
 $title = $product['product_name'];
 $price = $product['product_price'];
@@ -30,12 +35,13 @@ $desc_err = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     require_once "./validateProduct.php";
     if (empty($title_err) && empty($price_err) && empty($discount_err) && empty($qty_err) && empty($desc_err)) {
-        $sql = 'UPDATE broccoli_product SET product_name = :title, product_desc = :desc, product_price = :price, product_img = :img, catagory_id = NULL, discount_price = :discount, product_quantity = :qty, update_at = :update_at WHERE product_id  = :id';
+        $sql = 'UPDATE broccoli_product SET product_name = :title, product_desc = :desc, product_price = :price, catagory_id = :catagory_id, discount_price = :discount, product_quantity = :qty, update_at = :update_at WHERE product_id  = :id';
         if ($statement = $pdo->prepare($sql)) {
             $statement->bindValue(':title', $title);
             $statement->bindValue(':desc', $desc);
             $statement->bindValue(':price', $price);
-            $statement->bindValue(':img', $upload_dir);
+            // $statement->bindValue(':img', $upload_dir);
+            $statement->bindValue(':catagory_id', $catagory_id);
             $statement->bindValue(':discount', $discount);
             $statement->bindValue(':qty', $qty);
             $statement->bindValue(':update_at', $date);

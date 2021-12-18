@@ -1,11 +1,16 @@
 <?php
 require_once "../../config/_dbconnection.php";
+$sql = 'SELECT * FROM broccoli_catagory ORDER BY catagory_id  DESC';
+$statement  = $pdo->prepare($sql);
+$statement->execute();
+$catagorys = $statement ->fetchAll(PDO::FETCH_ASSOC);
 
 $title = '';
 $price = '';
 $discount = '';
 $qty = '';
 $desc = '';
+$catagory_id = '';
 $date = date('Y-m-d H:i:s');
 
 
@@ -19,12 +24,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     require_once "./validateProduct.php";
     if (empty($title_err) && empty($price_err) && empty($discount_err) && empty($qty_err) && empty($desc_err)) {
         // require_once "./uploadProductImage.php";
-        $sql = 'INSERT INTO broccoli_product (product_name, product_desc, product_price, product_img, discount_price, product_quantity, create_at, update_at) 
-        VALUE(:title, :desc, :price, :img, :discount, :qty,  :create_at, :update_at )';
+        $sql = 'INSERT INTO broccoli_product (product_name, product_desc, product_price, catagory_id, discount_price, product_quantity, create_at, update_at) 
+        VALUE(:title, :desc, :price, :catagory_id, :discount, :qty,  :create_at, :update_at )';
         if ($statement = $pdo->prepare($sql)) {
             $statement->bindValue(':title', $title);
             $statement->bindValue(':price', $price);
-            $statement->bindValue(':img', $upload_dir);
+            // $statement->bindValue(':img', $upload_dir);
+            $statement->bindValue(':catagory_id', $catagory_id);
             $statement->bindValue(':discount', $discount);
             $statement->bindValue(':qty', $qty);
             $statement->bindValue(':desc', $desc);

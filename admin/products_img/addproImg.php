@@ -13,7 +13,7 @@ if (!is_dir('../../public/img/productRelImg')) {
 }
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($img_err)) {
-        $upload_dir = $productRel['images'];
+
         $valid_extensions = array('jpeg', 'jpg', 'png');
         foreach ($_FILES['image']['tmp_name'] as $i => $value) {
             $image = $_FILES['image']['name'][$i];
@@ -23,20 +23,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $imgExt = strtolower(pathinfo($image, PATHINFO_EXTENSION));
             if (in_array($imgExt, $valid_extensions)) {
                 // if ($imageSize < 5000000) {
-                if ($productRel['images']) {
-                    unlink('../../public/' . $productRel['images']);
-                }
+                // if ($productRel['images']) {
+                //     unlink('../../public/' . $productRel['images']);
+                // }
                 $picProfile = rand(1000, 1000000) . '.' . $imgExt;
                 $upload_dir = 'img/productRelImg/' . $picProfile;
                 $upload_File_dir = '../../public/img/productRelImg/' . $picProfile;
                 move_uploaded_file($temp_dir, $upload_File_dir);
-                $sql = 'UPDATE broccoli_product_images SET images = :images, update_at = :update_at WHERE product_id = :product_id';
+                $sql = 'INSERT INTO broccoli_product_images (images, product_id, create_at, update_at) 
+                VALUE(:images, :product_id, :create_at, :update_at)';
                 if ($statement = $pdo->prepare($sql)) {
                     $statement->bindValue(':images', $upload_dir);
-                    $statement->bindValue(':update_at', $date);
                     $statement->bindValue(':product_id', $id);
+                    $statement->bindValue(':create_at', $date);
+                    $statement->bindValue(':update_at', $date);
                     if ($statement->execute()) {
-                        header('location:  productImages.php');
+                        header('location:  productsImg.php');
                     }
                 }
                 // } else {
@@ -46,20 +48,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $img_err = 'Upload file should be jpg or jpeg or png';
             }
         }
+        //    require_once "./validateproductImages.php";
 
     }
 }
-
 ?>
+
 
 <?php include_once "../basbord-partials/header.php" ?>
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <a href="productImages.php" class="btn btn-outline-primary">Back to Product multiple Images</a>
+            <a href="./productsImg.php" class="btn btn-outline-primary">Back to Product multiple Images</a>
         </div>
         <div class="col-12 mt-5 mb-5">
-            <?php include_once "_formproductImages.php" ?>
+            <?php include_once "_formproImg.php" ?>
         </div>
     </div>
 </div>

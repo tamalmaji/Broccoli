@@ -25,13 +25,14 @@
         <samp class="invalid-feedback"><?php echo $desc_err; ?></samp>
     </div>
     <div class="form-group">
-        <div class="mb-3">
-            <label class="form-label">Upload Product Image</label>
-            <input class="form-control" type="file" name="file">
-            <samp class="invalid-feedback"><?php echo $img_err; ?></samp>
-        </div>
+        <label>Product Catagory</label>
+        <select class="form-select" aria-label="Catagory id" name="catagory_id">
+        <option value="<?php echo 0 ?>">Select Your catagory</option>
+            <?php foreach ($catagorys as $i => $catagory) : ?>
+                <option value="<?php echo $catagory['catagory_id'] ?>"><?php echo $catagory['catagory_name'] ?></option>
+            <?php endforeach ?>
+        </select>
     </div>
-  
     <div class="form-group">
         <button type="submit" class="btn btn-primary">Submit</button>
     </div>
