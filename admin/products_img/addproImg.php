@@ -1,9 +1,10 @@
 <?php
 require_once "../../config/_dbconnection.php";
 
+
 $id = $_GET['id'] ?? NULL;
 if (!$id) {
-    header('Location: productImages.php');
+    header('Location: productsImg.php');
 }
 
 $date = date('Y-m-d H:i:s');
@@ -48,7 +49,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $img_err = 'Upload file should be jpg or jpeg or png';
             }
         }
-        //    require_once "./validateproductImages.php";
 
     }
 }

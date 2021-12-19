@@ -10,7 +10,7 @@
   <!-- /.control-sidebar -->
 
   <!-- Main Footer -->
-  <footer class="main-footer fixed-bottom">
+  <footer class="main-footer mt-5">
     <!-- To the right -->
     <div class="float-right d-none d-sm-inline">
       Anything you want

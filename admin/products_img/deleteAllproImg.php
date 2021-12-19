@@ -1,7 +1,7 @@
 <?php
 $id = $_POST['id'] ?? NULL;
 if (!$id) {
-    header('location: product.php');
+    header('location: productsImg.php');
     exit;
 }
 require_once "../../config/_dbconnection.php";
@@ -14,21 +14,14 @@ if ($statement = $pdo->prepare($sqli)) {
         foreach ($pros as $key => $pro) {
             # code...
             if ($pro['images']) {
-                unlink('../../public/'. $pro['images']);
+                unlink('../../public/' . $pro['images']);
             }
         }
-        $sql = 'DELETE FROM broccoli_product  WHERE product_id = :id';
-        if ($statements = $pdo->prepare($sql)) {
+        $sqll = 'DELETE FROM broccoli_product_images WHERE product_id = :id';
+        if ($statements = $pdo->prepare($sqll)) {
             $statements->bindValue(':id', $id);
             if ($statements->execute()) {
-
-                $sqll = 'DELETE FROM broccoli_product_images WHERE product_id = :id';
-                if ($statementss = $pdo->prepare($sqll)) {
-                    $statementss->bindValue(':id', $id);
-                    if ($statementss->execute()) { 
-                        header('location: product.php');
-                    }
-                }
+                header('location: productsImg.php');
             }
         }
     }
