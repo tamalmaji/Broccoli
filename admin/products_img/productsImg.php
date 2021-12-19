@@ -58,9 +58,9 @@ $products = $statements->fetchAll(PDO::FETCH_ASSOC);
                                                 </td>
                                                 <td> <?php echo $pro['create_at']; ?> </td>
                                                 <td>
-                                                    <a href="./updateproImg.php?id=<?php echo $pro['product_id'] ?>" class="btn btn-info btn-xs">Edit</a>
+                                                    <a href="./updateproImg.php?id=<?php echo $pro['id'] ?>" class="btn btn-info btn-xs">Edit</a>
                                                     <form action="deleteproImg.php" method="POST" style="display: inline-block;">
-                                                        <input type="hidden" name="id" value="<?php echo $pro['product_id'] ?>">
+                                                        <input type="hidden" name="id" value="<?php echo $pro['id'] ?>">
                                                         <button type="submit" class="btn btn-danger btn-xs">Delete</button>
                                                     </form>
                                                 </td>
