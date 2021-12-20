@@ -34,6 +34,13 @@
         </select>
     </div>
     <div class="form-group">
+        <div class="mb-3">
+            <label class="form-label">Upload Product Image Images</label>
+            <input class="form-control" type="file" name="file">
+            <samp class="invalid-feedback"><?php echo $imgr_err; ?></samp>
+        </div>
+    </div>
+    <div class="form-group">
         <button type="submit" class="btn btn-primary">Submit</button>
     </div>
 </form>

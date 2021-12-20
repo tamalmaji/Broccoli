@@ -6,15 +6,15 @@ if (!$id) {
 }
 require_once "../../config/_dbconnection.php";
 
-$sqli = 'SELECT * FROM broccoli_product_images  WHERE product_id  = :id';
+$sqli = 'SELECT * FROM broccoli_product  WHERE product_id  = :id';
 if ($statement = $pdo->prepare($sqli)) {
     $statement->bindValue(':id', $id);
     if ($statement->execute()) {
         $pros = $statement->fetchAll(PDO::FETCH_ASSOC);
         foreach ($pros as $key => $pro) {
             # code...
-            if ($pro['images']) {
-                unlink('../../public/'. $pro['images']);
+            if ($pro['product_img']) {
+                unlink('../../public/'. $pro['product_img']);
             }
         }
         $sql = 'DELETE FROM broccoli_product  WHERE product_id = :id';

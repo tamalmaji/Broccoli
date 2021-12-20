@@ -47,9 +47,9 @@ $products = $statement->fetchAll(PDO::FETCH_ASSOC);
               <thead>
                 <tr>
                   <th>#</th>
+                  <th>Image</th>
                   <th>Title</th>
                   <th>Price</th>
-                  <!-- <th>Image</th> -->
                   <th>Create Date</th>
                   <th>Action</th>
                 </tr>
@@ -58,7 +58,9 @@ $products = $statement->fetchAll(PDO::FETCH_ASSOC);
                 <?php foreach ($products as $i => $product) : ?>
                   <tr>
                     <td><?php echo $i + 1 ?></td>
-
+                    <td>
+                        <img src="../../public/<?php echo $product['product_img'] ?>" alt="" style="width: 50px;">
+                    </td>
                     <td><?php echo $product['product_name'] ?></td>
                     <td><?php echo $product['product_price'] ?></td>
                     <!-- <td>

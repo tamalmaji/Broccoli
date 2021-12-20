@@ -35,12 +35,12 @@ $desc_err = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     require_once "./validateProduct.php";
     if (empty($title_err) && empty($price_err) && empty($discount_err) && empty($qty_err) && empty($desc_err)) {
-        $sql = 'UPDATE broccoli_product SET product_name = :title, product_desc = :desc, product_price = :price, catagory_id = :catagory_id, discount_price = :discount, product_quantity = :qty, update_at = :update_at WHERE product_id  = :id';
+        $sql = 'UPDATE broccoli_product SET product_name = :title, product_desc = :desc, product_price = :price, catagory_id = :catagory_id, discount_price = :discount, product_quantity = :qty, product_img = :img, update_at = :update_at WHERE product_id  = :id';
         if ($statement = $pdo->prepare($sql)) {
             $statement->bindValue(':title', $title);
             $statement->bindValue(':desc', $desc);
             $statement->bindValue(':price', $price);
-            // $statement->bindValue(':img', $upload_dir);
+            $statement->bindValue(':img', $upload_dir);
             $statement->bindValue(':catagory_id', $catagory_id);
             $statement->bindValue(':discount', $discount);
             $statement->bindValue(':qty', $qty);
@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <?php include_once "../basbord-partials/header.php" ?>
 
-<div class="container">
+<div class=" content-wrapper" style="min-height: 485.139px;">
     <div class="row">
         <div class="col-12">
             <a href="product.php" class="btn btn-outline-primary">Back to Product</a>
