@@ -354,10 +354,11 @@
                         <div class="ltn__product-tab-content-inner">
                             <div class="row ltn__tab-product-slider-one-active slick-arrow-1">
                                 <!-- ltn__product-item -->
-                                <?php include_once "../frontEnd/FoodDrinks.php" ?>
+                                <?php include_once "../oProducts/FoodDrinks.php" ?>
                                 <!-- ltn__product-item -->
                                 <!--  -->
                             </div>
+
                         </div>
                     </div>
                     <div class="tab-pane fade" id="liton_tab_3_2">
@@ -365,7 +366,7 @@
                             <div class="row ltn__tab-product-slider-one-active slick-arrow-1">
                                 <!-- ltn__product-item -->
 
-                                <?php include_once "../frontEnd/vegetables.php" ?>
+                                <?php include_once "../oProducts/vegetables.php" ?>
 
                                 <!-- ltn__product-item -->
                                 <!--  -->
@@ -376,7 +377,7 @@
                         <div class="ltn__product-tab-content-inner">
                             <div class="row ltn__tab-product-slider-one-active slick-arrow-1">
                                 <!-- ltn__product-item -->
-                                    <?php include_once "../frontEnd/dFroducts.php" ?>
+                                <?php include_once "../oProducts/dFroducts.php" ?>
                                 <!-- ltn__product-item -->
                                 <!--  -->
                             </div>
@@ -386,37 +387,40 @@
                         <div class="ltn__product-tab-content-inner">
                             <div class="row ltn__tab-product-slider-one-active slick-arrow-1">
                                 <!-- ltn__product-item -->
-                                    <?php include_once "../frontEnd/BreadCake.php" ?>
+                                <?php include_once "../oProducts/BreadCake.php" ?>
                                 <!-- ltn__product-item -->
-                                 <!--  -->
+                                <!--  -->
                             </div>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="liton_tab_3_5">
                         <div class="ltn__product-tab-content-inner">
                             <div class="row ltn__tab-product-slider-one-active slick-arrow-1">
-                                 <!-- ltn__product-item -->
-                                 <?php include_once "../frontEnd/Meat.php" ?>
                                 <!-- ltn__product-item -->
-                                 <!--  -->
+                                <?php include_once "../oProducts/Fish.php" ?>
+
+                                <!-- ltn__product-item -->
+                                <!--  -->
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="liton_tab_3_6">
+                    <div class="tab-pane" id="liton_tab_3_6">
                         <div class="ltn__product-tab-content-inner">
                             <div class="row ltn__tab-product-slider-one-active slick-arrow-1">
-                                 <!-- ltn__product-item -->
-                                 <?php include_once "../frontEnd/Fish.php" ?>
                                 <!-- ltn__product-item -->
-                                 <!--  -->
+                                <?php include_once "../oProducts/Meat.php" ?>
+                                <!-- ltn__product-item -->
+                                <!--  -->
                             </div>
                         </div>
+                     
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<?php //include_once "../modal/viewModal.php" ?>
 <!-- PRODUCT TAB AREA END -->
 
 <!-- COUNTDOWN AREA START -->
@@ -455,7 +459,7 @@
         </div>
         <div class="row ltn__tab-product-slider-one-active--- slick-arrow-1">
             <!-- ltn__product-item -->
-                <?php include_once "../featuredProducts/featuredProducts.php" ?>
+            <?php include_once "../featuredProducts/featuredProducts.php" ?>
             <!-- ltn__product-item -->
             <!--  -->
         </div>

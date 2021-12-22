@@ -3,7 +3,7 @@ require_once "../config/_dbconnection.php";
 
 $sql = 'SELECT * FROM broccoli_catagory WHERE catagory_name = :catagory_name';
 if ($statement = $pdo->prepare($sql)) {
-    $statement->bindValue(':catagory_name', 'MEAT');
+    $statement->bindValue(':catagory_name', 'DRIED FOODS');
     if ($statement->execute()) {
         $catagorys =  $statement->fetch(PDO::FETCH_ASSOC);
         $id = $catagorys['catagory_id'];
@@ -11,7 +11,7 @@ if ($statement = $pdo->prepare($sql)) {
         if ($statements = $pdo->prepare($sqli)) {
             $statements->bindValue(':id', $id);
             if ($statements->execute()) {
-                $meats = $statements->fetchAll(PDO::FETCH_ASSOC);
+                $drirdFoods = $statements->fetchAll(PDO::FETCH_ASSOC);
             }
         }
     }
@@ -20,11 +20,11 @@ if ($statement = $pdo->prepare($sql)) {
 
 
 ?>
-<?php foreach ($meats as $i => $meat) : ?>
-    <div class="col-lg-12">
-        <div class="ltn__product-item ltn__product-item-3 text-center" <?php echo $meat['product_id']; ?>>
+<?php foreach ($drirdFoods as $i => $drirdFood) : ?>
+    <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+        <div class="ltn__product-item ltn__product-item-3 text-center" <?php echo $drirdFood['product_id']; ?>>
             <div class="product-img">
-                <a href="product-details.html"><img src="./<?php echo $meat['product_img'] ?>" alt="#"></a>
+                <a href="product-details.html"><img src="./<?php echo $drirdFood['product_img'] ?>" alt="#"></a>
                 <div class="product-badge">
                     <ul>
                         <li class="sale-badge">New</li>
@@ -33,17 +33,17 @@ if ($statement = $pdo->prepare($sql)) {
                 <div class="product-hover-action">
                     <ul>
                         <li>
-                            <a href="#" title="Quick View" data-toggle="modal" data-target="#quick_view_modal">
+                            <a href="product-details.php?id=<?php echo $drirdFood['product_id'] ?>" title="Quick View">
                                 <i class="far fa-eye"></i>
                             </a>
                         </li>
                         <li>
-                            <a href="#" title="Add to Cart" data-toggle="modal" data-target="#add_to_cart_modal">
+                            <a href="cart.php?id=<?php echo $drirdFood['product_id'] ?>" title="Add to Cart">
                                 <i class="fas fa-shopping-cart"></i>
                             </a>
                         </li>
                         <li>
-                            <a href="#" title="Wishlist" data-toggle="modal" data-target="#liton_wishlist_modal">
+                            <a href="wishlist.php?id=<?php echo $drirdFood['product_id'] ?>" title="Wishlist">
                                 <i class="far fa-heart"></i></a>
                         </li>
                     </ul>
@@ -60,10 +60,10 @@ if ($statement = $pdo->prepare($sql)) {
                         <li class="review-total"> <a href="#"> (24)</a></li>
                     </ul>
                 </div>
-                <h2 class="product-title"><a href="product-details.php"><?php echo $meat['product_name'] ?></a></h2>
+                <h2 class="product-title"><a href="product-details.php"><?php echo $drirdFood['product_name'] ?></a></h2>
                 <div class="product-price">
-                    <span><?php echo $meat['discount_price'] ?></span>
-                    <del><?php echo $meat['product_price'] ?></del>
+                    <span><?php echo $drirdFood['discount_price'] ?></span>
+                    <del><?php echo $drirdFood['product_price'] ?></del>
                 </div>
             </div>
         </div>
