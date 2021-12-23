@@ -54,12 +54,12 @@
                             <h4 class="footer-title">Company</h4>
                             <div class="footer-menu">
                                 <ul>
-                                    <li><a href="about.html">About</a></li>
-                                    <li><a href="blog.html">Blog</a></li>
-                                    <li><a href="shop.html">All Products</a></li>
-                                    <li><a href="locations.html">Locations Map</a></li>
-                                    <li><a href="faq.html">FAQ</a></li>
-                                    <li><a href="contact.html">Contact us</a></li>
+                                    <li><a href="about.php">About</a></li>
+                                    <!-- <li><a href="blog.php">Blog</a></li> -->
+                                    <!-- <li><a href="shop.php">All Products</a></li> -->
+                                    <!-- <li><a href="locations.php">Locations Map</a></li> -->
+                                    <!-- <li><a href="faq.php">FAQ</a></li> -->
+                                    <li><a href="contact.php">Contact us</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -69,12 +69,13 @@
                             <h4 class="footer-title">Services.</h4>
                             <div class="footer-menu">
                                 <ul>
-                                    <li><a href="order-tracking.html">Order tracking</a></li>
-                                    <li><a href="wishlist.html">Wish List</a></li>
-                                    <li><a href="login.html">Login</a></li>
-                                    <li><a href="account.html">My account</a></li>
-                                    <li><a href="about.html">Terms & Conditions</a></li>
-                                    <li><a href="about.html">Promotional Offers</a></li>
+                                    <!-- <li><a href="order-tracking.php">Order tracking</a></li> -->
+                                    <!-- <li><a href="wishlist.php">Wish List</a></li> -->
+                                    <!-- <li><a href="login.php">Login</a></li> -->
+                                    <!-- <li><a href="account.php">My account</a></li> -->
+                                    <!-- <li><a href="about.php">Terms & Conditions</a></li> -->
+                                    <!-- <li><a href="about.php">Promotional Offers</a></li> -->
+                                    <li><a href="shop.php">All Products</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -84,12 +85,13 @@
                             <h4 class="footer-title">Customer Care</h4>
                             <div class="footer-menu">
                                 <ul>
-                                    <li><a href="login.html">Login</a></li>
-                                    <li><a href="account.html">My account</a></li>
-                                    <li><a href="wishlist.html">Wish List</a></li>
-                                    <li><a href="order-tracking.html">Order tracking</a></li>
-                                    <li><a href="faq.html">FAQ</a></li>
-                                    <li><a href="contact.html">Contact us</a></li>
+                                    <!-- <li><a href="login.php">Login</a></li> -->
+                                    <!-- <li><a href="account.php">My account</a></li> -->
+                                    <!-- <li><a href="wishlist.php">Wish List</a></li> -->
+                                    <!-- <li><a href="order-tracking.php">Order tracking</a></li> -->
+                                    <!-- <li><a href="faq.php">FAQ</a></li> -->
+                                    <li><a href="contact.php">Contact us</a></li>
+                                    <li><a href="about.php">Terms & Conditions</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -156,5 +158,5 @@
     <script src="js/main.js"></script>
   
 </body>
-</html>
+</php>
 

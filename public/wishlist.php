@@ -9,7 +9,7 @@ if (!$id) {
 <?php include_once "../partials/header.php" ?>
     
     <!-- Utilize Cart Menu Start -->
-    <div id="ltn__utilize-cart-menu" class="ltn__utilize ltn__utilize-cart-menu">
+    <!-- <div id="ltn__utilize-cart-menu" class="ltn__utilize ltn__utilize-cart-menu">
         <div class="ltn__utilize-menu-inner ltn__scrollbar">
             <div class="ltn__utilize-menu-head">
                 <span class="ltn__utilize-menu-title">Cart</span>
@@ -69,11 +69,13 @@ if (!$id) {
             </div>
 
         </div>
-    </div>
+    </div> -->
     <!-- Utilize Cart Menu End -->
 
 
     <div class="ltn__utilize-overlay"></div>
+<?php include_once "../partials/mobileMenu.php" ?>
+
 
     <!-- BREADCRUMB AREA START -->
     <div class="ltn__breadcrumb-area ltn__breadcrumb-area-2 ltn__breadcrumb-color-white bg-overlay-theme-black-90 bg-image" data-bg="img/bg/9.jpg">

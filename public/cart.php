@@ -7,6 +7,7 @@ if (!$id) {
 
 ?>
 <?php include_once "../partials/header.php" ?>
+<?php include_once "../partials/mobileMenu.php" ?>
     
     <!-- Utilize Cart Menu Start -->
     <div id="ltn__utilize-cart-menu" class="ltn__utilize ltn__utilize-cart-menu">

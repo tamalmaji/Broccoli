@@ -51,7 +51,7 @@
                                 <ul>
                                     <li>
                                         <!-- ltn__language-menu -->
-                                        <div class="ltn__drop-menu ltn__currency-menu ltn__language-menu">
+                                        <!-- <div class="ltn__drop-menu ltn__currency-menu ltn__language-menu">
                                             <ul>
                                                 <li><a href="#" class="dropdown-toggle"><span class="active-currency">English</span></a>
                                                     <ul>
@@ -64,7 +64,7 @@
                                                     </ul>
                                                 </li>
                                             </ul>
-                                        </div>
+                                        </div> -->
                                     </li>
                                     <li>
                                         <!-- ltn__social-media -->
@@ -106,7 +106,7 @@
                                         <li><a href="index.php">Home</a></li>
                                         <li><a href="about.php">About</a></li>
                                         <li><a href="shop.php">Shop</a></li>
-                                        <li><a href="blog.php">News</a></li>
+                                        <!-- <li><a href="blog.php">News</a></li> -->
                                         <li><a href="contact.php">Contact</a></li>
                                     </ul>
                                 </div>
@@ -148,9 +148,9 @@
                         </div>
                         <!-- mini-cart -->
                         <div class="mini-cart-icon">
-                            <a href="#ltn__utilize-cart-menu" class="ltn__utilize-toggle">
+                            <a href="cart.php" class="">
                                 <i class="icon-shopping-cart"></i>
-                                <sup>2</sup>
+                                <!-- <sup>2</sup> -->
                             </a>
                         </div>
                         <!-- mini-cart -->
