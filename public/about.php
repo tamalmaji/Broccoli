@@ -1,4 +1,19 @@
-
+<?php
+session_start();
+require_once "../config/_dbconnection.php";
+// if (!isset($_SESSION['user_login']) || empty($_SESSION['user_login'])) {
+//    header('location: login.php');
+// }
+$login = $_SESSION['user_login'] ?? NULL;
+$sql = 'SELECT * FROM broccoli_users  WHERE user_login = :login';
+if ($statement = $pdo->prepare($sql)) {
+    $statement->bindValue(':login', $login);
+    if ($statement->execute()) {
+        $user = $statement->fetch(PDO::FETCH_ASSOC);
+    }
+    
+}
+?> 
     <?php include_once "../partials/header.php" ?>
     <!-- Utilize Cart Menu Start -->
     <!-- <div id="ltn__utilize-cart-menu" class="ltn__utilize ltn__utilize-cart-menu">

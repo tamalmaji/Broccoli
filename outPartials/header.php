@@ -10,15 +10,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Place favicon.png in the root directory -->
-    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon" />
+    <link rel="shortcut icon" href="../public/img/favicon.png" type="image/x-icon" />
     <!-- Font Icons css -->
-    <link rel="stylesheet" href="css/font-icons.css">
+    <link rel="stylesheet" href="../public/css/font-icons.css">
     <!-- plugins css -->
-    <link rel="stylesheet" href="css/plugins.css">
+    <link rel="stylesheet" href="../public/css/plugins.css">
     <!-- Main Stylesheet -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../public/css/style.css">
     <!-- Responsive css -->
-    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="../public/css/responsive.css">
+    <link rel="stylesheet" href="../public/css/dashbord.css">
 </head>
 
 <body>
@@ -94,7 +95,7 @@
                         <div class="col">
                             <div class="site-logo-wrap">
                                 <div class="site-logo">
-                                    <a href="index.html"><img src="img/logo-2.png" alt="Logo"></a>
+                                    <a href="index.html"><img src="../public/img/logo-2.png" alt="Logo"></a>
                                 </div>
                             </div>
                         </div>
@@ -103,11 +104,11 @@
                                 <nav>
                                     <div class="ltn__main-menu">
                                         <ul>
-                                            <li><a href="index.php">Home</a></li>
-                                            <li><a href="about.php">About</a></li>
-                                            <li><a href="shop.php">Shop</a></li>
+                                            <li><a href="../public/index.php">Home</a></li>
+                                            <li><a href="../public/about.php">About</a></li>
+                                            <li><a href="../public/shop.php">Shop</a></li>
                                             <!-- <li><a href="blog.php">News</a></li> -->
-                                            <li><a href="contact.php">Contact</a></li>
+                                            <li><a href="../public/contact.php">Contact</a></li>
                                         </ul>
                                     </div>
                                 </nav>
@@ -138,15 +139,15 @@
                                         <a href="#"><i class="icon-user"></i></a>
                                         <ul>
                                             <?php if (!isset($_SESSION['user_login']) || empty($_SESSION['user_login']) === true) { ?>
-                                                <li><a href="login.php">Sign in</a></li>
-                                                <li><a href="register.php">Register</a></li>
+                                                <li><a href="../public/login.php">Sign in</a></li>
+                                                <li><a href="../public/register.php">Register</a></li>
                                             <?php } else { ?>
                                                 <?php if ($user['user_type'] === '1') { ?>
                                                     <li><a href="../admin/dashbord/dashbord.php">Admin Panal</a></li>
                                                 <?php } else { ?>
-                                                    <li><a href="account.php">My Account</a></li>
+                                                    <li><a href="../public/account.php">My Account</a></li>
                                                 <?php } ?>
-                                                <li><a href="logout.php">Logout</a></li>
+                                                <li><a href="../public/logout.php">Logout</a></li>
                                             <?php } ?>
 
 
@@ -157,7 +158,7 @@
                             </div>
                             <!-- mini-cart -->
                             <div class="mini-cart-icon">
-                                <a href="cart.php" class="">
+                                <a href="../public/cart.php" class="">
                                     <i class="icon-shopping-cart"></i>
                                     <!-- <sup>2</sup> -->
                                 </a>
