@@ -1,5 +1,5 @@
 <form action="" method="post">
-<div class="form-group">
+    <div class="form-group">
         <label for="name">User Name</label>
         <input type="text" class="form-control <?php echo (!empty($name_err)) ? 'is-invalid' : ''; ?>" name="name" placeholder="Enter Name" value="<?php echo $name; ?>">
         <samp class="invalid-feedback"><?php echo $name_err; ?></samp>
@@ -23,6 +23,15 @@
         <label for="pwd">User Confirm Password</label>
         <input type="password" class="form-control <?php echo (!empty($cpwd_err)) ? 'is-invalid' : ''; ?>" name="cpwd" placeholder="Enter Confirm Password" value="<?php echo $cpwd; ?>">
         <samp class="invalid-feedback"><?php echo $cpwd_err; ?></samp>
+    </div>
+    <div class="form-group">
+        <label for="userType">User Type</label>
+        <select class="form-select" name='type'>
+            <option value="<?php echo $usType['userType_id'] ?>"> <?php echo $usType['userType_name'] ?> </option>
+            <?php foreach ($catagorys as $i => $catagory) : ?>
+                <option value="<?php echo $catagory['userType_id'] ?>"><?php echo $catagory['userType_name'] ?></option>
+            <?php endforeach ?>
+       </select>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>

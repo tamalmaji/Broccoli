@@ -6,7 +6,7 @@ $email = '';
 $pwd = '';
 $cpwd = '';
 $date = date('Y-m-d H:i:s');
-$type = 0;
+$type = 3;
 
 $name_err = '';
 $login_err = '';

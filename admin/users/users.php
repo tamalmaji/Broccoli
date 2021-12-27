@@ -57,13 +57,16 @@ $users = $statement->fetchAll(PDO::FETCH_ASSOC);
                 <?php foreach ($users as $i => $user) : ?>
                   <tr>
                     <td><?php echo $i + 1 ?></td>
-                    <td><?php echo 'image' ?></td>
+                    <td>
+                      <img src="../../public/<?php echo $user['users_img'] ?>" alt="" style="width: 50px;">
+                    </td>
                     <td><?php echo $user['user_nicename'] ?></td>
                     <td><?php echo $user['user_email'] ?></td>
                     <td><?php echo $user['user_type'] ?></td>
                     <td><?php echo $user['create_at'] ?></td>
                     <td>
                       <a href="./updateUser.php?id=<?php echo $user['user_id'] ?>" class="btn btn-info btn-xs">Edit</a>
+                      <a href="./UpdateUserPass.php?id=<?php echo $user['user_id'] ?>" class="btn btn-info btn-xs">Edit Pass</a>
                       <form action="deleteUser.php" method="POST" style="display: inline-block;">
                         <input type="hidden" name="id" value="<?php echo $user['user_id'] ?>">
                         <button type="submit" class="btn btn-danger btn-xs">Delete</button>

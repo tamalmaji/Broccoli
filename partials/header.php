@@ -141,7 +141,7 @@
                                                 <li><a href="login.php">Sign in</a></li>
                                                 <li><a href="register.php">Register</a></li>
                                             <?php } else { ?>
-                                                <?php if ($user['user_type'] === '1') { ?>
+                                                <?php if ($user['user_type'] === '2') { ?>
                                                     <li><a href="../admin/dashbord/dashbord.php">Admin Panal</a></li>
                                                 <?php } else { ?>
                                                     <li><a href="account.php">My Account</a></li>

@@ -1,13 +1,23 @@
 <?php
 require_once "../../config/_dbconnection.php";
 
+$statements = $pdo->prepare('SELECT * FROM broccoli_usertype');
+$statements->execute();
+$catagorys = $statements->fetchAll(PDO::FETCH_ASSOC);
+
+$uType = 'User';
+$statementss = $pdo->prepare('SELECT * FROM broccoli_usertype WHERE userType_name = :uType');
+$statementss->bindValue(':uType', $uType);
+$statementss->execute();
+$usType = $statementss->fetch(PDO::FETCH_ASSOC);
+
 $name = '';
 $login = '';
 $email = '';
 $pwd = '';
 $cpwd = '';
 $date = date('Y-m-d H:i:s');
-$type = 0;
+$type = '';
 
 $name_err = '';
 $login_err = '';
@@ -23,6 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim($_POST['email']);
     $pwd = trim($_POST['pwd']);
     $cpwd = trim($_POST['cpwd']);
+    $type = trim($_POST['type']);
 
     if (empty($name)) {
         $name_err = 'Please Enter Name';
@@ -107,7 +118,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <?php include_once "../basbord-partials/header.php" ?>
 
 <div class=" mb-5 content-wrapper" style="min-height: 485.139px;">
-    <div class="row">
+    <div class="row m-5">
         <div class="col-12">
             <a href="userType.php" class="btn btn-outline-primary">Back to Users</a>
         </div>

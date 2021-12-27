@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($login_err) && empty($cpwd_err)) {
         $sql = 'SELECT user_login, user_pass FROM broccoli_users WHERE user_login = :login';
         if ($statement = $pdo->prepare($sql)) {
-            $statement->bindValue('login', $login);
+            $statement->bindValue(':login', $login);
             if ($statement->execute()) {
                 if ($statement->rowCount() === 1) {
                     if ($row = $statement->fetch()) {

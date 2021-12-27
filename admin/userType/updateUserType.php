@@ -56,8 +56,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 ?>
 <?php include_once "../basbord-partials/header.php" ?>
 
-<div class="container content-wrapper" style="min-height: 485.139px;">
-    <div class="row">
+<div class="content-wrapper" style="min-height: 485.139px;">
+    <div class="row m-5">
         <div class="col-12">
             <a href="userType.php" class="btn btn-outline-primary">Back to userType</a>
         </div>

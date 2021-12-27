@@ -1,3 +1,19 @@
+<?php
+session_start();
+require_once "../../config/_dbconnection.php";
+// if (!isset($_SESSION['user_login']) || empty($_SESSION['user_login'])) {
+//    header('location: login.php');
+// }
+$login = $_SESSION['user_login'] ?? NULL;
+$sql = 'SELECT * FROM broccoli_users  WHERE user_login = :login';
+if ($statement = $pdo->prepare($sql)) {
+    $statement->bindValue(':login', $login);
+    if ($statement->execute()) {
+        $userl = $statement->fetch(PDO::FETCH_ASSOC);
+    }
+    
+}
+?> 
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
@@ -71,7 +87,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
       <a href="../../public/index.php" class="brand-link">
-        <img src="../../public/images/360_F_348552050_uSbrANL65DNj21FbaCeswpM33mat1Wll.jpg" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+        <img src="../../public/img/logo-2.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">AdminPanal</span>
       </a>
 
@@ -80,10 +96,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
           <div class="image">
-            <img src="" class="img-circle elevation-2" alt="User Image">
+            <img src="../../public/<?php echo $userl['users_img'] ?>" class="img-circle elevation-2" alt="User Image" style="background-color: white;">
           </div>
           <div class="info">
-            <a href="#" class="d-block">Alexander Pierce</a>
+            <a href="#" class="d-block"><?php echo $userl['user_nicename'] ?></a>
           </div>
         </div>
 

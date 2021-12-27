@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <?php include_once "../basbord-partials/header.php" ?>
 <div class=" content-wrapper" style="min-height: 485.139px;">
-    <div class="row">
+    <div class="row m-5">
         <div class="col-12">
             <a href="./productsImg.php" class="btn btn-outline-primary">Back to Product multiple Images</a>
         </div>
