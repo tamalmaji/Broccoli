@@ -1,5 +1,5 @@
     <!-- FOOTER AREA START -->
-    <footer class="ltn__footer-area  ">
+    <footer class="ltn__footer-area">
         <div class="footer-top-area  section-bg-1 plr--5">
             <div class="container-fluid">
                 <div class="row">

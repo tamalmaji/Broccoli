@@ -11,14 +11,13 @@ if ($statement = $pdo->prepare($sql)) {
     if ($statement->execute()) {
         $user = $statement->fetch(PDO::FETCH_ASSOC);
     }
-    
 }
-?> 
+?>
 <?php
 
 $id = $_GET['id'] ?? NULL;
 if (!$id) {
-    header('location: index.php');
+    // header('location: shop.php');
 }
 require_once "../config/_dbconnection.php";
 $sql = 'SELECT * FROM broccoli_product WHERE product_id = :id';
@@ -36,24 +35,57 @@ if ($statement = $pdo->prepare($sql)) {
                     $stat->bindValue(':id', $id);
                     if ($stat->execute()) {
                         $proImages = $stat->fetchAll(PDO::FETCH_ASSOC);
+                        $proI = $stat->fetch(PDO::FETCH_ASSOC);
                     }
                 }
                 if ($statm = $pdo->prepare('SELECT * FROM broccoli_product WHERE catagory_id = :id')) {
-                   
-                        $statm->bindValue(':id', $catagory['catagory_id']);
-                        if ($statm->execute()) {
-                            $products = $statm->fetchAll(PDO::FETCH_ASSOC);
+
+                    $statm->bindValue(':id', $catagory['catagory_id']);
+                    if ($statm->execute()) {
+                        $products = $statm->fetchAll(PDO::FETCH_ASSOC);
+                    }
+                }
+                $userId = $user['user_id'];
+                $qty = 1;
+                $date = date('Y-m-d H:i:s');
+                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                    $qty = trim($_POST['qty']);
+                    $pid = trim($_POST['id']);
+                    if ($st = $pdo->prepare("SELECT * FROM broccoli_shippingaddress WHERE user_id  = :userid")) {
+                        $st->bindValue(':userid', $userId);
+                        if ($st->execute()) {
+                            $shippingaddress = $st->fetch(PDO::FETCH_ASSOC);
+                            $shipId = $shippingaddress['shippingAddress_id'];
+                            
+                            $q = 'INSERT INTO broccoli_order (order_qnty, user_id, product_id, shippingaddress_id, create_at, update_at) 
+                                VALUE(:order_qnty, :user_id, :product, :shippingaddress_id, :create_at, :update_at)';
+                            if ($stt = $pdo->prepare($q)) {
+                                $stt->bindValue(':order_qnty', $qty);
+                                $stt->bindValue(':user_id', $userId);
+                                $stt->bindValue(':product', $pid);
+                                $stt->bindValue(':shippingaddress_id', $shipId);
+                                $stt->bindValue(':create_at', $date);
+                                $stt->bindValue(':update_at', $date);
+                                if ($stt->execute()) {
+                                    header('location: cart.php');
+                                }
+                            }
                         }
-                    
+                    }
                 }
             }
         }
     }
 }
 
-
-$sata
 ?>
+<?php
+
+
+
+?>
+
+
 <?php include_once "../partials/header.php" ?>
 
 <!-- Utilize Cart Menu Start -->
@@ -207,17 +239,25 @@ $sata
                                 </div>
                                 <div class="ltn__product-details-menu-2">
                                     <ul>
-                                        <li>
-                                            <div class="cart-plus-minus">
-                                                <input type="text" value="02" name="qtybutton" class="cart-plus-minus-box">
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="theme-btn-1 btn btn-effect-1" title="Add to Cart" data-toggle="modal" data-target="#add_to_cart_modal">
-                                                <i class="fas fa-shopping-cart"></i>
-                                                <span>ADD TO CART</span>
-                                            </a>
-                                        </li>
+
+                                        <form action="product-details.php" method="post">
+                                            <li>
+                                                <div class="cart-plus-minus">
+                                                    <input type="number" name="qty" class="cart-plus-minus-box" value="<?php echo $qty ?>">
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div>
+                                                    <input type="hidden" name="id" value="<?php echo $id ?>">
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <button type="submit" class="theme-btn-1 btn btn-effect-1" title="Add to Cart">
+                                                    <i class="fas fa-shopping-cart"></i>
+                                                    <span>ADD TO CART</span>
+                                                </button>
+                                            </li>
+                                        </form>
                                     </ul>
                                 </div>
                                 <div class="ltn__product-details-menu-3">

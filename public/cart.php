@@ -1,9 +1,4 @@
 <?php
-
-$id = $_GET['id'] ?? NULL;
-if (!$id) {
-    header('location: index.php');
-}
 session_start();
 require_once "../config/_dbconnection.php";
 if (!isset($_SESSION['user_login']) || empty($_SESSION['user_login'])) {
@@ -15,13 +10,35 @@ if ($statement = $pdo->prepare($sql)) {
     $statement->bindValue(':login', $login);
     if ($statement->execute()) {
         $user = $statement->fetch(PDO::FETCH_ASSOC);
+        $userid = $user['user_id'];
+
+        if ($stmts = $pdo->prepare('SELECT * FROM broccoli_order WHERE user_id = :userid')) {
+           $stmts->bindValue(':userid', $userid);
+           if ($stmts->execute()) {
+               $orders = $stmts->fetchAll(PDO::FETCH_ASSOC);
+           }
+        }
+
+        // $sqli = 'SELECT * FROM broccoli_order WHERE user_id = :userid';
+        // if ($stmt = $pdo->prepare($sqli)) {
+        //     $stmt->bindValue(':userid', $userid);
+        //     if ($stmt->execute()) {
+        //         $orde = $stmt->fetch(PDO::FETCH_ASSOC);
+        //         $productid = $orde['product_id'];
+        //         $sqli = 'SELECT * FROM broccoli_product WHERE product_id = :productid';
+        //         if ($stmtt = $pdo->prepare($sqli)) {
+        //             $stmtt->bindValue(':productid', $productid);
+        //             if ($stmtt->execute()) {
+        //                 $products = $stmtt->fetchAll(PDO::FETCH_ASSOC);
+        //             }
+        //         }
+        //     }
+        // }
     }
     
 }
 
 ?> 
-
-?>
 <?php include_once "../partials/header.php" ?>
 <?php include_once "../partials/mobileMenu.php" ?>
     
@@ -131,63 +148,49 @@ if ($statement = $pdo->prepare($sql)) {
                                     <th class="cart-product-subtotal">Subtotal</th>
                                 </thead> -->
                                 <tbody>
-                                    <tr>
-                                        <td class="cart-product-remove">x</td>
-                                        <td class="cart-product-image">
-                                            <a href="product-details.html"><img src="img/product/1.png" alt="#"></a>
-                                        </td>
-                                        <td class="cart-product-info">
-                                            <h4><a href="product-details.html">Vegetables Juices</a></h4>
-                                        </td>
-                                        <td class="cart-product-price">$149.00</td>
-                                        <td class="cart-product-quantity">
-                                            <div class="cart-plus-minus">
-                                                <input type="text" value="02" name="qtybutton" class="cart-plus-minus-box">
-                                            </div>
-                                        </td>
-                                        <td class="cart-product-subtotal">$298.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="cart-product-remove">x</td>
-                                        <td class="cart-product-image">
-                                            <a href="product-details.html"><img src="img/product/2.png" alt="#"></a>
-                                        </td>
-                                        <td class="cart-product-info">
-                                            <h4><a href="product-details.html">Orange Sliced Mix</a></h4>
-                                        </td>
-                                        <td class="cart-product-price">$85.00</td>
-                                        <td class="cart-product-quantity">
-                                            <div class="cart-plus-minus">
-                                                <input type="text" value="02" name="qtybutton" class="cart-plus-minus-box">
-                                            </div>
-                                        </td>
-                                        <td class="cart-product-subtotal">$170.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="cart-product-remove">x</td>
-                                        <td class="cart-product-image">
-                                            <a href="product-details.html"><img src="img/product/3.png" alt="#"></a>
-                                        </td>
-                                        <td class="cart-product-info">
-                                            <h4><a href="product-details.html">Red Hot Tomato</a></h4>
-                                        </td>
-                                        <td class="cart-product-price">$75.00</td>
-                                        <td class="cart-product-quantity">
-                                            <div class="cart-plus-minus">
-                                                <input type="text" value="02" name="qtybutton" class="cart-plus-minus-box">
-                                            </div>
-                                        </td>
-                                        <td class="cart-product-subtotal">$150.00</td>
-                                    </tr>
+                                    <?php foreach ($orders as $i => $order) : ?>
+                                        <?php
+                                        $productid = $order['product_id'];
+                                            $sqli = 'SELECT * FROM broccoli_product WHERE product_id = :productid';
+                                            if ($stmtt = $pdo->prepare($sqli)) {
+                                                $stmtt->bindValue(':productid', $productid);
+                                                if ($stmtt->execute()) {
+                                                    $products = $stmtt->fetchAll(PDO::FETCH_ASSOC);
+                                                }
+                                            }
+
+
+                                        ?>
+                                        <?php foreach ($products as $key => $product) :?>
+                                            
+                                        <tr>
+                                            <td class="cart-product-remove">x</td>
+                                            <td class="cart-product-image">
+                                                <a href="product-details.php?id=<?php echo $product['product_id'] ?>"><img src="./<?php echo $product['product_img']; ?>" alt="#"></a>
+                                            </td>
+                                            <td class="cart-product-info">
+                                                <h4><a href="product-details.php?id=<?php echo $product['product_id'] ?>"><?php echo $product['product_name']; ?></a></h4>
+                                            </td>
+                                            <td class="cart-product-price">₹<?php echo $product['product_price']; ?></td>
+                                            <td class="cart-product-price">
+                                                <!-- <div class="cart-plus-minus"> -->
+                                                    <!-- <input type="text" value="02" name="qtybutton" class="cart-plus-minus-box"> -->
+                                                    <?php echo $order['order_qnty'] ?>
+                                                <!-- </div> -->
+                                            </td>
+                                            <td class="cart-product-subtotal">₹<?php echo $product['product_price']; ?></td>
+                                        </tr>
+                                        <?php endforeach ?>
+                                    <?php endforeach ?>
                                     <tr class="cart-coupon-row">
-                                        <td colspan="6">
+                                        <!-- <td colspan="6">
                                             <div class="cart-coupon">
                                                 <input type="text" name="cart-coupon" placeholder="Coupon code">
                                                 <button type="submit" class="btn theme-btn-2 btn-effect-2">Apply Coupon</button>
                                             </div>
-                                        </td>
+                                        </td> -->
                                         <td>
-                                            <button type="submit" class="btn theme-btn-2 btn-effect-2-- disabled">Update Cart</button>
+                                            <button type="submit" class="btn theme-btn-2 btn-effect-2--">Update Cart</button>
                                         </td>
                                     </tr>
                                 </tbody>

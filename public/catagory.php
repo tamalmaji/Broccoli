@@ -1,4 +1,9 @@
 <?php
+// $page = $_GET['page'] ?? null;
+$id = $_GET['id'] ?? null;
+if (!$id) {
+    header('location: shop.php');
+}
 session_start();
 require_once "../config/_dbconnection.php";
 // if (!isset($_SESSION['user_login']) || empty($_SESSION['user_login'])) {
@@ -11,32 +16,43 @@ if ($statement = $pdo->prepare($sql)) {
     if ($statement->execute()) {
         $user = $statement->fetch(PDO::FETCH_ASSOC);
     }
-    
 }
-?> 
+?>
 <?php
 require_once "../config/_dbconnection.php";
-$num_per_page = 15;
+// $statementt = $pdo->prepare('SELECT * FROM broccoli_catagory WHERE catagory_id = :catId ');
+// $statementt->bindValue(':catId', $id);
+// if ($statementt->execute()) {
+//     $cat = $statementt->fetch(PDO::FETCH_ASSOC);
+//     $cat_id = $cat['catagory_id'];
+// }
 
-$stmt = $pdo->prepare('SELECT * FROM broccoli_product');
+// $num_per_page = 2;
+
+// // $stmts = $pdo->prepare('');
+
+$stmt = $pdo->prepare('SELECT * FROM broccoli_product WHERE catagory_id = :id');
+$stmt->bindValue(':id', $id);
 $stmt->execute();
 $noOfPages = $stmt->rowCount();
-$total_pages = ceil($noOfPages / $num_per_page);
+// $total_pages = ceil($noOfPages / $num_per_page);
 
-if (isset($_GET['page']) && !empty($_GET['page'])) {
-   $page = $_GET['page'];
-   if ($page > $total_pages) {
-    //    $page = 1;
-       header("Location: shop.php?page=1");
-   }
-}else{
-    $page = 1;
-}
+// if (isset($_GET['page']) && !empty($_GET['page'])) {
+//     $page = $_GET['page'];
+//     if ($page > $total_pages) {
+//         //    $page = 1;
+//         header("Location: catagory.php?id=$cat_id?page=1");
+//     }
+// } else {
+//     $page = 1;
+// }
 
-$start_from = ($page-1)* 05;
- 
-$sql = "SELECT * FROM broccoli_product limit $start_from, $num_per_page";
+// $start_from = ($page - 1) * $num_per_page;
+
+// $sql = "SELECT * FROM broccoli_product WHERE catagory_id = :id  limit $start_from, $num_per_page";
+$sql = "SELECT * FROM broccoli_product WHERE catagory_id = :id";
 if ($statement = $pdo->prepare($sql)) {
+    $statement->bindValue(':id', $id);
     if ($statement->execute()) {
         $products = $statement->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -48,6 +64,7 @@ if ($statements = $pdo->prepare($sqli)) {
         $catagorys = $statements->fetchAll(PDO::FETCH_ASSOC);
     }
 }
+
 
 ?>
 <?php include_once "../partials/header.php" ?>
@@ -299,33 +316,29 @@ if ($statements = $pdo->prepare($sqli)) {
                 </div>
                 <div class="ltn__pagination-area text-center">
                     <?php
-                        // $stmt = $pdo->prepare('SELECT * FROM broccoli_product');
-                        // $stmt->execute();
-                        // $noOfPages = $stmt->rowCount();
-                        // $total_pages = ceil($noOfPages / $num_per_page);
+                    // $stmt = $pdo->prepare('SELECT * FROM broccoli_product');
+                    // $stmt->execute();
+                    // $noOfPages = $stmt->rowCount();
+                    // $total_pages = ceil($noOfPages / $num_per_page);
                     ?>
-                    <div class="ltn__pagination">
+                    <!-- <div class="ltn__pagination">
                         <ul>
-                            <?php if ($page > 1) :?>
-                                <li><a href="shop.php?page=<?php echo ($page - 1) ?>"><i class="fas fa-angle-double-left"></i></a></li>
-                            <?php endif ?>
-                            <?php for ($i=1; $i<=$total_pages; $i++) :?>
-                                <?php if ($i == $page) { ?>
-                                    <li class="active"><a href="shop.php?page=<?php echo $i ?>"><?php echo $i ?></a></li>
-                                <?php } else{ ?>
-                                        <li><a href="shop.php?page=<?php echo $i ?>"><?php echo $i ?></a></li>
+                            <?php // if ($page > 1) : ?>
+                                <li><a href="catagory.php?id=<?php // echo $cat_id; ?>?page=<?php //echo ($page - 1) ?>"><i class="fas fa-angle-double-left"></i></a></li>
+                            <?php // endif ?>
+                            <?php //for ($i = 1; $i <= $total_pages; $i++) : ?>
+                                <?php //if ($i == $page) { ?>
+                                    <li class="active"><a href="catagory.php?id=<?php //echo $cat_id ?>?page=<?php //echo $i ?>" ><?php //echo $i ?></a></li>
+                                <?php //} else { ?>
+                                    <li><a href="catagory.php?id=<?php //echo $cat_id ?>?page=<?php //echo $i ?>"><?php //echo $i ?></a></li>
 
-                                <?php }?>
-                            <?php endfor ?>
-                            <!-- <li class="active"><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">...</a></li>
-                            <li><a href="#">10</a></li> -->
-                            <?php if ($i > $page) : ?>
-                                <li><a href="shop.php?page=<?php echo ($page + 1) ?>"><i class="fas fa-angle-double-right"></i></a></li>
-                            <?php endif ?>
+                                <?php //} ?>
+                            <?php //endfor ?>
+                            <?php // if ($i > $page) { ?>
+                                <li><a href="catagory.php?id=<?php //echo $cat_id ?>?page=<?php // echo ($page - 1) ?>"><i class="fas fa-angle-double-right"></i></a></li>
+                            <?php //} ?>
                         </ul>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div class="col-lg-4">

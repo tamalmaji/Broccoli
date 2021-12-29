@@ -1,9 +1,30 @@
 <?php
 require_once "../../config/_dbconnection.php";
-$sql = 'SELECT * FROM broccoli_users ORDER BY user_id DESC';
-$statement  = $pdo->prepare($sql);
-$statement->execute();
-$users = $statement->fetchAll(PDO::FETCH_ASSOC);
+$num_per_page = 10;
+
+$stmt = $pdo->prepare('SELECT * FROM broccoli_users');
+$stmt->execute();
+$noOfPages = $stmt->rowCount();
+$total_pages = ceil($noOfPages / $num_per_page);
+
+if (isset($_GET['page']) && !empty($_GET['page'])) {
+  $page = $_GET['page'];
+  if ($page > $total_pages) {
+    //    $page = 1;
+    header("Location: users.php?page=1");
+  }
+} else {
+  $page = 1;
+}
+
+$start_from = ($page - 1) * 05;
+
+$sql = "SELECT * FROM broccoli_users limit $start_from, $num_per_page";
+if ($statement = $pdo->prepare($sql)) {
+  if ($statement->execute()) {
+    $users = $statement->fetchAll(PDO::FETCH_ASSOC);
+  }
+}
 
 ?>
 <?php include_once "../basbord-partials/header.php" ?>
@@ -80,6 +101,31 @@ $users = $statement->fetchAll(PDO::FETCH_ASSOC);
           <!-- /.card-body -->
         </div>
         <!-- /.card -->
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 col-md-5">
+        <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">Showing 1 to 10 of <?php echo $noOfPages ?> entries</div>
+      </div>
+      <div class="col-sm-12 col-md-7">
+        <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
+          <ul class="pagination">
+            <?php if ($page > 1) : ?>
+              <li class="paginate_button page-item previous" id="example1_previous"><a href="users.php?page=<?php echo ($page - 1) ?>" aria-controls="example1" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
+            <?php endif ?>
+            <?php for ($i = 1; $i < $total_pages; $i++) : ?>
+              <?php if ($i == $page) { ?>
+
+                <li class="paginate_button page-item active"><a href="users.php?page=<?php echo $i ?>" aria-controls="example1" data-dt-idx="1" tabindex="0" class="page-link"><?php echo $i ?></a></li>
+              <?php } else { ?>
+                <li class="paginate_button page-item"><a href="users.php?page=<?php echo $i ?>" aria-controls="example1" data-dt-idx="1" tabindex="0" class="page-link"><?php echo $i ?></a></li>
+              <?php } ?>
+            <?php endfor ?>
+            <?php if ($i > $page) : ?>
+              <li class="paginate_button page-item next" id="example1_next"><a href="users.php?page=<?php echo ($page + 1) ?>" aria-controls="example1" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li>
+            <?php endif ?>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
